@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>广场舞黑马4</title>
+    <link rel="stylesheet" type="text/css" href="./css/api.css" />
+    <link rel="stylesheet" type="text/css" href="./css/aui.css" />
+    <style type="text/css">
+
+    </style>
+</head>
+
+<body>
+    <header id="aui-header" class="aui-bar aui-bar-nav aui-bar-danger">
+        <a class="aui-pull-left">
+            <span class="aui-iconfont aui-icon-left"></span>
+        </a>
+        <div id="header-title" class="aui-title">广场舞黑马4</div>
+    </header>
+    <footer class="aui-nav" id="aui-footer">
+        <ul class="aui-bar-tab">
+            <li class="active-warning" id="tabbar1" onclick="randomSwitchBtn(this,'热门',0)">
+                <span class="aui-iconfont aui-icon-hotfill"></span>
+                <p>热门</p>
+            </li>
+            <li id="tabbar2" onclick="randomSwitchBtn(this,'广场',1)">
+                <span class="aui-iconfont aui-icon-delete"></span>
+                <p>广场</p>
+            </li>
+            <li id="tabbar3" onclick="randomSwitchBtn(this,'动态',2)">
+                <span class="aui-iconfont aui-icon-mark"></span>
+                <p>动态</p>
+            </li>
+            <li id="tabbar4" onclick="randomSwitchBtn(this,'关于',3)">
+                <span class="aui-iconfont aui-icon-my"></span>
+                <p>关于</p>
+            </li>
+        </ul>
+    </footer>
+</body>
+<script type="text/javascript" src="./script/api.js"></script>
+<!-- <script type="text/javascript" src="./script/aui.js"></script> -->
+<script type="text/javascript">
+apiready = function(){
+        var header = $api.byId('aui-header');
+        $api.fixStatusBar(header);
+        var headerPos = $api.offset(header);
+        var body_h = $api.offset($api.dom('body')).h;
+        var footer_h = $api.offset($api.byId('aui-footer')).h;
+        api.openFrameGroup ({
+            name: 'footer_tab_demo',
+            scrollEnabled:true,
+            rect:{x:0, y:headerPos.h, w:'auto', h:body_h - headerPos.h - footer_h},
+            index:0,
+            preload:3,
+            frames:
+            [{
+                name: 'hot',
+                url: './html/hot.html',
+                bounces:false
+            },{
+                name: 'square',
+                url: './html/square.html',
+                bounces:false
+            },{
+                name: 'news',
+                url: './html/news.html',
+                bounces:false
+            },{
+                name: 'about',
+                url: './html/about.html',
+                bounces:false
+            }]
+        }, function(ret, err){
+            var footer = $api.byId('aui-footer');
+            var footerAct = $api.dom(footer, '.aui-bar-tab li.active-warning');
+            $api.removeCls(footerAct, 'active-warning');
+            var name = ret.name;
+            var index = ret.index;
+            if(index==0){
+                $api.text($api.byId('header-title'),'热门');
+                $api.addCls($api.byId('tabbar1'), 'active-warning');
+            }else if(index==1){
+                $api.text($api.byId('header-title'),'广场');
+                $api.addCls($api.byId('tabbar2'), 'active-warning');
+            }else if(index==2){
+                $api.text($api.byId('header-title'),'动态');
+                $api.addCls($api.byId('tabbar3'), 'active-warning');
+            }else if(index==3){
+                $api.text($api.byId('header-title'),'关于');
+                $api.addCls($api.byId('tabbar4'), 'active-warning');
+            }
+        });
+
+        $api.addEvt($api.byId('back'), 'click', function(){
+            api.closeWin();
+        });
+    };
+    function randomSwitchBtn(obj, name, index) {
+        $api.text($api.byId('header-title'),name);
+        var footer = $api.byId('aui-footer');
+        var footerAct = $api.dom(footer, '.aui-bar-tab li.active-warning');
+        $api.removeCls(footerAct, 'active-warning');
+        $api.addCls(obj, 'active-warning');
+        api.setFrameGroupIndex({
+            name: 'footer_tab_demo',
+            index: index
+        });
+    }
+</script>
+</script>
+
+</html>
