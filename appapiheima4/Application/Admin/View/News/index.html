@@ -1,0 +1,76 @@
+
+<include file="Public:header" />
+
+
+<script type="text/javascript">
+		function dodel(id){
+			if(confirm("确定删除吗？")){
+				window.location="__URL__/delete/id/"+id;
+			}
+		}
+
+	</script>
+	<script type="text/javascript">
+			try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
+	</script>
+				</div>
+
+<div class="main-content">
+<div class="breadcrumbs" id="breadcrumbs">
+						<script type="text/javascript">
+							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+						</script>
+
+						<ul class="breadcrumb">
+							<li>
+								<i class="icon-home home-icon"></i>
+								<a href="__APP__/Index/index">首页</a>
+							</li>
+							<li class="active">动态展示</li>
+							<li class="active">查看</li>
+						</ul><!-- .breadcrumb -->
+
+						<div class="nav-search" id="nav-search">
+							<form class="form-search">
+								<span class="input-icon">
+									<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+									<i class="icon-search nav-search-icon"></i>
+								</span>
+							</form>
+						</div><!-- #nav-search -->
+					</div>
+	<div class="container">
+			<h4 style="text-align:center"><caption>动态列表</caption></h4>
+		<table class="table table-bordered table-striped">
+			<tr>
+				<th>ID</th>
+				<th>标题</th>
+				<th>音乐链接</th>
+				<th>歌手</th>
+				<th>缩略图</th>
+				<th>描述</th>
+				<th>添加时间</th>
+				<th>操作</th>
+			</tr>
+			<style type="text/css">
+				td{text-align: center;}
+			</style>
+				<tr>
+				<volist id='vo' name='data'>
+					<td>{$vo.id}</td>
+					<td>{$vo.title}</td>
+					<td><a href="{$vo.url}" class="btn btn-primary">点击访问</td>
+					<td>{$vo.author}</td>
+					<!-- <td><img src="<?php echo BASEURL;?>/{$vo.smallimg}" width="56" height="44" /></td> -->
+					<td><img src="__BASEURL__/{$vo.smallimg}" width="56" height="44" /></td>
+					<td>{$vo.description|html_entity_decode}</td>
+					<td>{$vo.addtime|date="Y-m-d H:i:s",###}</td>
+					<td><a href="__URL__/edit/id/{$vo.id}">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:dodel({$vo.id})">删除</a></td>
+				</tr>
+				</volist>
+		</table>
+		<h4 style="text-align:center"><caption>{$page}</caption></h4>
+	</div>
+	</div>
+</body>
+<include file="Public:footer" />

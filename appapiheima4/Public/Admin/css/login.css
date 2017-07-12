@@ -1,0 +1,71 @@
+*{
+	padding:0px;
+	margin:0px;
+}
+#main{
+	width:100%;
+	height:100%;
+}
+#beijing{
+	top:50%;
+	position:absolute;
+	width:100%;
+	height:300px;
+	margin-top:-130px;
+	background:#51BDFB;
+}
+#form{
+	top:50%;
+	left:50%;
+	position:absolute;
+	width:650px;
+	height:400px;
+	margin-top:-200px;
+	margin-left:-325px;
+	border-radius:10px;
+	background:#CEEFFE;
+	-moz-box-shadow: 5px 5px 15px #909090;
+	-webkit-box-shadow: 5px 5px 15px #909090;
+	box-shadow:5px 5px 15px #909090;
+}
+#top{
+	text-align:center;
+	line-height:50px;
+	font-weight:bold;
+	color:#fff;
+	font-size:30px;
+	/*font-family:微软雅黑;*/
+	width:100%;
+	height:50px;
+	background:url("../images/login.jpg");
+}
+#bottom{
+	width:650px;
+	height:300px;
+}
+table{
+	color:#666;
+	font-family:微软雅黑;
+	font-size:18px;
+	margin-top:50px;
+	margin-left:100px;
+	width:500px;
+}
+table td{
+	color:#484343;
+	height:60px;
+}
+input{
+	color:#484343;
+}
+.tit{
+	text-align:right;
+}
+table .yao{
+	border:1px solid #ccc;
+	width:200px;
+	height:30px;
+}
+.last{
+	width:100px;
+}
